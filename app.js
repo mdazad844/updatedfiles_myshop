@@ -43,10 +43,10 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Import routes only if they exist to prevent crashes
 try {
-  app.use('/api/payments', require('./routes/payments'));
-  app.use('/api/orders', require('./routes/orders'));
-  app.use('/api/analytics', require('./routes/analytics'));
-  app.use('/api/webhooks', require('./routes/webhooks'));
+  app.use('/api/payments', require('./payments'));
+  app.use('/api/orders', require('./orders'));
+  app.use('/api/analytics', require('./analytics'));
+  app.use('/api/webhooks', require('./webhooks'));
   console.log('✅ All routes loaded successfully');
 } catch (error) {
   console.error('❌ Route loading error:', error);
@@ -92,3 +92,4 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 module.exports = app; // For testing
+
