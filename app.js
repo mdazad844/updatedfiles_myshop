@@ -10,6 +10,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'MyBrand Backend is running',
+    timestamp: new Date().toISOString(),
+    health_check: '/api/health'
+  });
+});
+
 // Database connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mybrand', {
   useNewUrlParser: true,
@@ -67,4 +76,5 @@ console.log('PORT:', process.env.PORT);
 console.log('RAZORPAY_KEY_ID exists:', !!process.env.RAZORPAY_KEY_ID);
 console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
 console.log('EMAIL_USER exists:', !!process.env.EMAIL_USER);
+
 console.log('============================');
